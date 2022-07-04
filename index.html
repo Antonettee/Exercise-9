@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css"/>
+    <title>Rock, Paper, Scissors</title>
+</head>
+<body>
+    <div class="container">
+        <div class="screen">
+            <div class="buttons">
+                <button onclick="game(0)">Rock</button>
+                <button onclick="game(1)">Paper</button>
+                <button onclick="game(2)">Scissor</button>
+            </div>
+            <h1 id="computer">Computer</h1>
+        
+        </div>
+        <div>
+            <p class="me">Me: <span id="meScore">0</span></p>
+            <p class="comp">Computer: <span id="compScore">0</span></p>
+        </div>
+
+        <div id="matchHistory"><br>
+            <h2>Match History:</h2>
+
+        </div>
+      
+    </div>
+
+    <script>
+
+        var me = 0;
+        var comp = 0;
+        function game(x) {
+            var list = ["Rock", "Paper", "Scissor"];
+            var compValue = Math.floor(Math.random()*3);
+
+            document.getElementById('computer').innerHTML = list[compValue];
+
+            ( x == compValue) ? "" : "";
+            
+            ( x == 0 && compValue == 1 ) ? comp++ : "";
+            ( x == 0 && compValue == 2 ) ? me++ : "";
+
+            ( x == 1 && compValue == 0 ) ? me++ : "";
+            ( x == 1 && compValue == 2 ) ? comp++ : "";
+
+            ( x == 2 && compValue == 0) ? comp++ : "";
+            ( x == 2 && compValue == 1) ? me++ : "";
+
+            document.getElementById('meScore').innerHTML = me;
+            document.getElementById('compScore').innerHTML = comp;
+            recordMatch(list[x], list[compValue]);
+            
+
+        }
+
+        function recordMatch(player, computer) {
+            var history = document.getElementById('matchHistory');
+            var entryMatch = document.createElement('div')
+            entryMatch.innerHTML = player + " vs " + computer;
+
+            history.appendChild(entryMatch);
+        }
+    </script>
+
+    
+</body>
+</html>
